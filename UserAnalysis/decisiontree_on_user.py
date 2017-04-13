@@ -4,6 +4,8 @@ import sexmachine.detector as gender
 reload(sys)
 sys.setdefaultencoding('utf-8')
 '''
+to run: python decisiontree_on_user.py <funny_train> <nonfunny_train> <funny_test> <nonfunny_test>
+
 output 2d matrix of [n_samples, n_features] for user profile
 X: [[review_ct, num_friends, num_fans, elite, avg_star, gender],[...]]
 
@@ -17,6 +19,7 @@ def getUserMatrix(users):
     Y = []
     d = sexmachine.detector.Detector(case_sensitive=False)
     for u in users:
+        assert type(u) == dict
         male, female, andy = 0,0,0
         if d.get_gender(u["name"]) == "male":
             male = 1
@@ -33,14 +36,12 @@ def getUserMatrix(users):
     return X, Y
 
 
-def trainDecisionTree():
-    # with open('funny_users_a.json', 'r') as f:
-    with open('funny_users_sm.json', 'r') as f:
+def trainDecisionTree(funny_train, nonfunny_train):
+    with open(funny_train, 'r') as f:
         json_str = f.read()
     funny_users = json.loads(json_str)
 
-    # with open('nonfunny_users_a.json', 'r') as f:
-    with open('nonfunny_users_sm.json', 'r') as f:
+    with open(nonfunny_train, 'r') as f:
         json_str = f.read()
     nonfunny_users = json.loads(json_str)
 
@@ -54,15 +55,12 @@ def trainDecisionTree():
 
     return clf
 
-def testDecisionTree(clf):
-    # convert test_data to matrix
-    # with open('funny_users_b.json', 'r') as f:
-    with open('funny_users_sm.json', 'r') as f:
+def testDecisionTree(clf, funny_test, nonfunny_test):
+    with open(funny_test, 'r') as f:
         json_str = f.read()
     funny_users = json.loads(json_str)
 
-    # with open('nonfunny_users_b.json', 'r') as f:
-    with open('nonfunny_users_sm.json', 'r') as f:
+    with open(nonfunny_test, 'r') as f:
         json_str = f.read()
     nonfunny_users = json.loads(json_str)
 
@@ -76,10 +74,10 @@ def testDecisionTree(clf):
     print clf.predict(testX)
 
 
-def main():
-    clf = trainDecisionTree()
-    testDecisionTree(clf)
+def main(funny_train, nonfunny_train, funny_test, nonfunny_test):
+    clf = trainDecisionTree(funny_train, nonfunny_train)
+    predictions = testDecisionTree(clf, funny_test, nonfunny_test)
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 

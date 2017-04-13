@@ -21,13 +21,18 @@ def get_user_biz_id(jdata):
 def get_users_from_id(users, user_ids):
     user_objs = []
     for i in user_ids:
-        user_objs.append(filter(lambda u: u['user_id'] == i, users))
+        match = filter(lambda u: u['user_id'] == i, users)
+        user_objs.append(match[0])
+    assert type(user_objs) == list
+    assert type(user_objs[0]) == dict
     return user_objs
 
 def get_biz_from_id(bizs, biz_ids):
     biz_objs = []
     for i in biz_ids:
-        biz_objs.append(filter(lambda u: u['business_id'] == i, bizs))
+        match = filter(lambda u: u['business_id'] == i, bizs)
+        biz_objs.append(match[0])
+
     return biz_objs
 
 def main(funny_file, nonfunny_file):

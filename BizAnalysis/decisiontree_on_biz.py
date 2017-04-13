@@ -19,22 +19,19 @@ def getBizMatrix(bizs):
 
     for fb in bizs:
         assert type(fb) == dict
-        entry = []
-        entry.append(int(fb["review_count"]))
-        entry.append(float(fb["stars"]))
+        entry = [int(fb["review_count"]), float(fb["stars"])]
         X.append(entry)
     for i in range(len(bizs)):
         Y.append("funny")
     return X, Y
 
-def trainDecisionTree():
-    # with open('funny_bizs_a.json', 'r') as f:
-    with open('funny_bizs_sm.json', 'r') as f:
+def trainDecisionTree(funny_train, nonfunny_train):
+    with open(funny_train, 'r') as f:
         json_str = f.read()
     funny_biz = json.loads(json_str)
+    assert type(funny_biz) == list
 
-    # with open('nonfunny_bizs_a.json', 'r') as f:
-    with open('nonfunny_bizs_sm.json', 'r') as f:
+    with open(nonfunny_train, 'r') as f:
         json_str = f.read()
     nonfunny_biz = json.loads(json_str)
 
@@ -48,33 +45,27 @@ def trainDecisionTree():
 
     return clf
 
-def testDecisionTree(clf):
+def testDecisionTree(clf, funny_test, nonfunny_test):
     # convert test_data to matrix
-    # with open('funny_bizs_b.json', 'r') as f:
-    with open('funny_bizs_sm.json', 'r') as f:
+    with open(funny_test, 'r') as f:
         json_str = f.read()
     funny_biz = json.loads(json_str)
 
+    with open(nonfunny_test, 'r') as f:
+        json_str = f.read()
+    nonfunny_biz = json.loads(json_str)
+
     testX, testY = getBizMatrix(funny_biz)
-
-    # with open('nonfunny_bizs_b.json', 'r') as f:
-    #     json_str = f.read()
-    # nonfunny_biz_b = json.loads(json_str)
-
-    # for nb in nonfunny_biz_b:
-    #     x = [int(nb["review_count"]), float(nb["stars"])]
-    #     testX.append(x)
-    # for i in range(len(nonfunny_biz_b)):
-    #     testY.append("nonfunny")
+    # testX, testY = getBizMatrix(funny_biz + nonfunny_biz)
 
     # run decision tree on testdata
     return clf.predict(testX)
 
-def main():
-    clf = trainDecisionTree()
-    predictions = testDecisionTree(clf)
+def main(funny_train, nonfunny_train, funny_test, nonfunny_test):
+    clf = trainDecisionTree(funny_train, nonfunny_train)
+    predictions = testDecisionTree(clf, funny_test, nonfunny_test)
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 

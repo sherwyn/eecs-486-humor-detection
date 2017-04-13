@@ -1,5 +1,5 @@
-
-._DS_Store
+*/.DS_Store
+.DS_Store
 yelp_academic_dataset*
 data/yelp_academic_dataset*
 data/beck-s
