@@ -10,6 +10,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.cross_validation import KFold
 from sklearn.metrics import confusion_matrix, f1_score
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.naive_bayes import BernoulliNB
 
 def build_data_frame(path, classification):
     rows = []
@@ -35,8 +37,8 @@ NONFUNNY = 'nonfunny'
 SOURCES = [
     ('data/yelp_funny_a.json',        FUNNY),
     ('data/yelp_nonfunny_a.json',    NONFUNNY),
-    # ('data/yelp_funny_b.json',        FUNNY),
-    # ('data/yelp_nonfunny_b.json',    NONFUNNY),
+    ('data/yelp_funny_b.json',        FUNNY),
+    ('data/yelp_nonfunny_b.json',    NONFUNNY),
 ]
 
 data = DataFrame({'text': [], 'class': []})
@@ -59,9 +61,28 @@ data = data.reindex(numpy.random.permutation(data.index))
 #         d = json.load(json_data)
 #         examples = [x['text'] for x in d]
 
+# Bag of words counts
+# pipeline = Pipeline([
+#     ('vectorizer',  CountVectorizer()),
+#     ('classifier',  MultinomialNB()) ])
+
+# Bigram counts
+# pipeline = Pipeline([
+#     ('count_vectorizer', CountVectorizer(ngram_range=(1, 2))),
+#     ('classifier',       MultinomialNB())
+# ])
+
+# Bigram frequencies
+# pipeline = Pipeline([
+#     ('count_vectorizer',   CountVectorizer(ngram_range=(1,  2))),
+#     ('tfidf_transformer',  TfidfTransformer()),
+#     ('classifier',         MultinomialNB())
+# ])
+
+# Bigram occurrences
 pipeline = Pipeline([
-    ('vectorizer',  CountVectorizer()),
-    ('classifier',  MultinomialNB()) ])
+    ('count_vectorizer',   CountVectorizer(ngram_range=(1, 2))),
+    ('classifier',         BernoulliNB(binarize=0.0)) ])
 
 pipeline.fit(data['text'].values, data['class'].values)
 
