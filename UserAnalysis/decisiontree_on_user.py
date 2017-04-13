@@ -1,6 +1,6 @@
 import json, os, sys
 from sklearn import tree
-import sexmachine.detector as gender
+import gender_predictor.detector as gender
 reload(sys)
 sys.setdefaultencoding('utf-8')
 '''
