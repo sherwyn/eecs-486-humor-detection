@@ -1,1 +1,13 @@
-yelp_academic_dataset*
+data/yelp_academic_dataset*
+data/beck-s
+data/BG
+data/easy_ham
+data/farmer-d
+data/GP
+data/hard_ham 
+data/kaminski-v
+data/kitchen-l
+data/lokay-m
+data/SH
+data/spam
+data/williams-w3
