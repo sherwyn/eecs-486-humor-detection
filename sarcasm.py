@@ -8,11 +8,13 @@ import csv
 from sets import Set
 from bs4 import BeautifulSoup
 
-with open('urls.txt') as f:
+# with open('urls_sarcasm.txt') as f:
+with open('urls_nonsarcasm.txt') as f:
     urls = f.readlines()
 lines = [x.strip() for x in urls]
 
-csvname = 'goodreads_sarcasm.csv'
+# csvname = 'goodreads_sarcasm.csv'
+csvname = 'goodreads_nonsarcasm.csv'
 
 with open(csvname, 'wb') as csvfile:
 
@@ -27,7 +29,6 @@ with open(csvname, 'wb') as csvfile:
         data = r.text
         soup = BeautifulSoup(data,'html.parser')
 
-        # Get product links from catalog page
         for div in soup.find_all('div', class_='quoteText'):
 
             quote = div.text.split(u'―')[0]
