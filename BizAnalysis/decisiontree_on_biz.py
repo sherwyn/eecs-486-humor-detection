@@ -1,5 +1,6 @@
 import json, os, sys
 from sklearn import tree
+import numpy as np
 reload(sys)
 sys.setdefaultencoding('utf-8')
 '''
@@ -13,19 +14,7 @@ X: [[review_ct, avg_star, UK, US, Germany, Canada],
 Y: [funny, nonfunny, funny, nonfunny......]
 
 '''
-def getBizMatrix(bizs):
-    X = []
-    Y = []
-
-    for fb in bizs:
-        assert type(fb) == dict
-        entry = [int(fb["review_count"]), float(fb["stars"])]
-        X.append(entry)
-    for i in range(len(bizs)):
-        Y.append("funny")
-    return X, Y
-
-def trainDecisionTree(funny_train, nonfunny_train):
+def getBizMatrix(funny_train, nonfunny_train):
     with open(funny_train, 'r') as f:
         json_str = f.read()
     funny_biz = json.loads(json_str)
@@ -35,7 +24,27 @@ def trainDecisionTree(funny_train, nonfunny_train):
         json_str = f.read()
     nonfunny_biz = json.loads(json_str)
 
-    X, Y = getBizMatrix(funny_biz + nonfunny_biz)
+    X = []
+    Y = []
+
+    for fb in funny_biz:
+        assert type(fb) == dict
+        entry = [int(fb["review_count"]), float(fb["stars"])]
+        X.append(entry)
+    for i in range(len(funny_biz)):
+        Y.append("funny")
+
+    for fb in nonfunny_biz:
+        assert type(fb) == dict
+        entry = [int(fb["review_count"]), float(fb["stars"])]
+        X.append(entry)
+    for i in range(len(nonfunny_biz)):
+        Y.append("nonfunny")
+
+    return X, Y
+
+def trainDecisionTree(funny_train, nonfunny_train):
+    X, Y = getBizMatrix(funny_train, nonfunny_train)
 
     print X
     print Y
@@ -46,24 +55,24 @@ def trainDecisionTree(funny_train, nonfunny_train):
     return clf
 
 def testDecisionTree(clf, funny_test, nonfunny_test):
-    # convert test_data to matrix
-    with open(funny_test, 'r') as f:
-        json_str = f.read()
-    funny_biz = json.loads(json_str)
-
-    with open(nonfunny_test, 'r') as f:
-        json_str = f.read()
-    nonfunny_biz = json.loads(json_str)
-
-    testX, testY = getBizMatrix(funny_biz)
-    # testX, testY = getBizMatrix(funny_biz + nonfunny_biz)
+    testX, testY = getBizMatrix(funny_test, nonfunny_test)
 
     # run decision tree on testdata
-    return clf.predict(testX)
+    predictions = clf.predict(testX).tolist()
+    print predictions
+
+    assert(type(predictions)) == list
+    num_correct = 0
+    for i in range(len(predictions)):
+        if predictions[i] == testY[i]:
+            num_correct += 1
+
+    accuracy = num_correct / float(len(predictions))
+    print str(accuracy)
 
 def main(funny_train, nonfunny_train, funny_test, nonfunny_test):
     clf = trainDecisionTree(funny_train, nonfunny_train)
-    predictions = testDecisionTree(clf, funny_test, nonfunny_test)
+    testDecisionTree(clf, funny_test, nonfunny_test)
 
 
 if __name__ == "__main__":
