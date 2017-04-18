@@ -1,4 +1,4 @@
-import json, os, sys
+import json, os, sys, pydotplus
 from sklearn import tree
 import numpy as np
 reload(sys)
@@ -6,11 +6,14 @@ sys.setdefaultencoding('utf-8')
 '''
 to run: python decisiontree_on_biz.py <funny_train> <nonfunny_train> <funny_test> <nonfunny_test>
 
-output 2d matrix of [n_samples, n_features] for businesses
-X: [[review_ct, avg_star, UK, US, Germany, Canada],
- [review_ct, avg_star, UK, US, Germany, Canada] ]
+Program prints predicted labels for test file, and accuracy rate.
+Output decision tree graph in pdf
 
- and list of labels:
+
+X: [[review_ct, avg_star],
+ [review_ct, avg_star] ]
+
+and list of labels:
 Y: [funny, nonfunny, funny, nonfunny......]
 
 '''
@@ -28,14 +31,12 @@ def getBizMatrix(funny_train, nonfunny_train):
     Y = []
 
     for fb in funny_biz:
-        assert type(fb) == dict
         entry = [int(fb["review_count"]), float(fb["stars"])]
         X.append(entry)
     for i in range(len(funny_biz)):
         Y.append("funny")
 
     for fb in nonfunny_biz:
-        assert type(fb) == dict
         entry = [int(fb["review_count"]), float(fb["stars"])]
         X.append(entry)
     for i in range(len(nonfunny_biz)):
@@ -61,14 +62,18 @@ def testDecisionTree(clf, funny_test, nonfunny_test):
     predictions = clf.predict(testX).tolist()
     print predictions
 
-    assert(type(predictions)) == list
     num_correct = 0
     for i in range(len(predictions)):
         if predictions[i] == testY[i]:
             num_correct += 1
 
     accuracy = num_correct / float(len(predictions))
-    print str(accuracy)
+    print "accuracy is " + str(accuracy)
+
+    # output graph
+    dot_data = tree.export_graphviz(clf, out_file=None) 
+    graph = pydotplus.graph_from_dot_data(dot_data) 
+    graph.write_pdf("tree.pdf") 
 
 def main(funny_train, nonfunny_train, funny_test, nonfunny_test):
     clf = trainDecisionTree(funny_train, nonfunny_train)

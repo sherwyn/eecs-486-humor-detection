@@ -61,7 +61,7 @@ def main(funny_file, nonfunny_file):
     funny_bizs = get_biz_from_id(bizs, funny_biz_ids)
     nonfunny_bizs = get_biz_from_id(bizs, nonfunny_biz_ids)
 
-    print str(len(funny_users)) + ' ' + str(len(nonfunny_users)) + ' ' + str(len(funny_bizs)) + ' ' + str(len(nonfunny_bizs))
+    print(str(len(funny_users)) +' '+ str(len(nonfunny_users)) + ' ' + str(len(funny_bizs))+' '+str(len(nonfunny_bizs)))
 
     # funny_users_output = open("funny_users_a.json", 'w')
     funny_users_output = open(funny_file.split('.')[0]+"_users.json", 'w')
