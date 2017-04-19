@@ -19,10 +19,12 @@ $ pip install -r requirements.txt
 
 #### classify_reviews.py
 This program runs the following 5 text classification models on our dataset:
-  - Dennis Chang
-  - Hannah Kim
-  - Yidan Liu
-  - Sherwyn Poon
+
+* MultinomialNB Bag of words
+* MultinomialNB Bigram counts
+* MultinomialNB Bigram frequencies
+* BernoulliNB Bigram occurences
+* Linear SVM
 
 Output: Prints the result of 5 text classification models on our Yelp review set.
 ```sh
@@ -40,11 +42,11 @@ $ python get_user_biz_from_reviews.py data/yelp_funny_b.json data/yelp_nonfunny_
 Program prints predicted labels for test file, and accuracy rate.
 Output decision tree graph in pdf
 ```sh
-$ python decisiontree_on_biz.py yelp_funny_a_bizs.json yelp_nonfunny_a_bizs.json yelp_funny_b_bizs.json yelp_nonfunny_a_bizs.json
+$ python BizAnalysis/decisiontree_on_biz.py BizAnalysis/yelp_funny_a_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json BizAnalysis/yelp_funny_b_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json
 ```
 #### UserAnalysis/decisiontree_on_user.py
 Program prints predicted labels for test file, and accuracy rate.
 Output decision tree graph in pdf
 ```sh
-$ python decisiontree_on_user.py yelp_funny_a_users.json yelp_nonfunny_a_users.json yelp_funny_b_users.json yelp_nonfunny_a_users.json
+$ python UserAnalysis/decisiontree_on_user.py UserAnalysis/yelp_funny_a_users.json UserAnalysis/yelp_nonfunny_a_users.json UserAnalysis/yelp_funny_b_users.json UserAnalysis/yelp_nonfunny_a_users.json
 ```
