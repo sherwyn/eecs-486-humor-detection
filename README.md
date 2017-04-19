@@ -39,16 +39,14 @@ $ python get_user_biz_from_reviews.py data/yelp_funny_a.json data/yelp_nonfunny_
 $ python get_user_biz_from_reviews.py data/yelp_funny_b.json data/yelp_nonfunny_b.json
 ```
 #### BizAnalysis/decisiontree_on_biz.py
-Program prints predicted labels for test file, and accuracy rate.
+This program trains a decision tree classifier with 2 sets of training data (1 funny and 1 nonfunny), and runs the generated decision tree classifier on test data. It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate. A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/).
 
-Output decision tree graph in pdf (requires http://www.graphviz.org/)
 ```sh
 $ python BizAnalysis/decisiontree_on_biz.py BizAnalysis/yelp_funny_a_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json BizAnalysis/yelp_funny_b_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json
 ```
 #### UserAnalysis/decisiontree_on_user.py
-Program prints predicted labels for test file, and accuracy rate.
+This program trains a decision tree classifier with 2 sets of training data (1 funny and 1 nonfunny), and runs the generated decision tree classifier on test data. It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate. A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/).
 
-Output decision tree graph in pdf (requires http://www.graphviz.org/)
 ```sh
 $ python UserAnalysis/decisiontree_on_user.py UserAnalysis/yelp_funny_a_users.json UserAnalysis/yelp_nonfunny_a_users.json UserAnalysis/yelp_funny_b_users.json UserAnalysis/yelp_nonfunny_a_users.json
 ```
