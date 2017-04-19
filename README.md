@@ -7,7 +7,7 @@
 
 ## Datasets included
 
-This repository contains datasets sourced from the Yelp Dataset Challenge: https://www.yelp.com/dataset_challenge. One program, get_user_biz_from_reviews.py, requires yelp_academic_dataset_user.json, a file too large for us to include in this repository (but it available in the link).
+This repository contains datasets sourced from the Yelp Dataset Challenge: https://www.yelp.com/dataset_challenge. One program, get_user_biz_from_reviews.py, requires yelp_academic_dataset_user.json and yelp_academic_dataset_business.json, files too large for us to include in this repository (but available in the link).
 
 ## Programs included
 
