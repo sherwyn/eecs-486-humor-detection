@@ -7,7 +7,7 @@
 
 ## Datasets included
 
-This repository contains datasets sourced from the Yelp Dataset Challenge: https://www.yelp.com/dataset_challenge. One program, get_user_biz_from_reviews.py, requires yelp_academic_dataset_user.json and yelp_academic_dataset_business.json, files too large for us to include in this repository (but available in the link).
+This repository contains datasets sourced from the Yelp Dataset Challenge: https://www.yelp.com/dataset_challenge
 
 ## Programs included
 
@@ -19,7 +19,9 @@ Output: Prints the result of 5 text classification models on our Yelp review set
 $ python classify_reviews.py
 ```
 #### get_user_biz_from_reviews.py
-This program takes yelp_academic_dataset_user.json and yelp_academic_dataset_business.json and generates files needed for the next two programs to run. We've already included the output files of this program in /BizAnalysis and /UserAnalysis, since this program takes a while to run.
+This program generates files needed for the next two programs to run.
+The datasets are too large for us to include in this repository, but can be downloaded at https://www.yelp.com/dataset_challenge
+We've already included the output of this program in /BizAnalysis and /UserAnalysis
 Output: funny_filename_users.json, nonfunny_filename_users.json, funny_filename_bizs.json, nonfunny_filename_bizs.json
 ```sh
 $ python get_user_biz_from_reviews.py data/yelp_funny_a.json data/yelp_nonfunny_a.json
