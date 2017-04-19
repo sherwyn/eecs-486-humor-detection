@@ -40,12 +40,14 @@ $ python get_user_biz_from_reviews.py data/yelp_funny_b.json data/yelp_nonfunny_
 ```
 #### BizAnalysis/decisiontree_on_biz.py
 Program prints predicted labels for test file, and accuracy rate.
+
 Output decision tree graph in pdf
 ```sh
 $ python BizAnalysis/decisiontree_on_biz.py BizAnalysis/yelp_funny_a_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json BizAnalysis/yelp_funny_b_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json
 ```
 #### UserAnalysis/decisiontree_on_user.py
 Program prints predicted labels for test file, and accuracy rate.
+
 Output decision tree graph in pdf
 ```sh
 $ python UserAnalysis/decisiontree_on_user.py UserAnalysis/yelp_funny_a_users.json UserAnalysis/yelp_nonfunny_a_users.json UserAnalysis/yelp_funny_b_users.json UserAnalysis/yelp_nonfunny_a_users.json
