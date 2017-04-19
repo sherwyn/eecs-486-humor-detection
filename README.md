@@ -19,11 +19,10 @@ $ pip install -r requirements.txt
 
 #### classify_reviews.py
 This program runs the following 5 text classification models on our dataset:
-  - MultinomialNB Bag of words
-  - MultinomialNB Bigram counts
-  - MultinomialNB Bigram frequencies
-  - BernoulliNB Bigram occurences
-  - Linear SVM
+  - Dennis Chang
+  - Hannah Kim
+  - Yidan Liu
+  - Sherwyn Poon
 
 Output: Prints the result of 5 text classification models on our Yelp review set.
 ```sh
