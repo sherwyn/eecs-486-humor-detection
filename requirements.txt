@@ -1,0 +1,5 @@
+pandas==0.19.2
+pydotplus==2.0.2
+numpy==1.12.1
+sexmachine==0.1.1
+scikit_learn==0.18.1
