@@ -55,7 +55,7 @@ This program trains a decision tree classifier with 2 sets of training data (1 f
 
 It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate.
 
-A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/). We've included the output graph in UserAnalysis/2000.pdf.
+A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/). We've included the output graph in BizAnalysis/2000.pdf.
 
 ```sh
 $ python BizAnalysis/decisiontree_on_biz.py BizAnalysis/yelp_funny_a_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json BizAnalysis/yelp_funny_b_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json
@@ -67,7 +67,7 @@ This program trains a decision tree classifier with 2 sets of training data (1 f
 
 It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate.
 
-A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/). We've included the output graph in BizAnalysis/2000.pdf.
+A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/). We've included the output graph in UserAnalysis/2000.pdf.
 
 ```sh
 $ python UserAnalysis/decisiontree_on_user.py UserAnalysis/yelp_funny_a_users.json UserAnalysis/yelp_nonfunny_a_users.json UserAnalysis/yelp_funny_b_users.json UserAnalysis/yelp_nonfunny_a_users.json
