@@ -21,8 +21,8 @@ $ python classify_reviews.py
 #### get_user_biz_from_reviews.py
 Output: funny_filename_users.json, nonfunny_filename_users.json, funny_filename_bizs.json, nonfunny_filename_bizs.json
 ```sh
-$ python get_user_biz_from_reviews.py yelp_funny_a.json yelp_nonfunny_a.json
-$ python get_user_biz_from_reviews.py yelp_funny_b.json yelp_nonfunny_b.json
+$ python get_user_biz_from_reviews.py data/yelp_funny_a.json data/yelp_nonfunny_a.json
+$ python get_user_biz_from_reviews.py data/yelp_funny_b.json data/yelp_nonfunny_b.json
 ```
 #### BizAnalysis/decisiontree_on_biz.py
 Program prints predicted labels for test file, and accuracy rate.
