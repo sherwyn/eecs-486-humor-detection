@@ -51,7 +51,9 @@ $ python get_user_biz_from_reviews.py data/yelp_funny_b.json data/yelp_nonfunny_
 
 #### BizAnalysis/decisiontree_on_biz.py
 
-This program trains a decision tree classifier with 2 sets of training data (1 funny and 1 nonfunny), and runs the generated decision tree classifier on test data. It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate. A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/).
+This program trains a decision tree classifier with 2 sets of training data (1 funny and 1 nonfunny), and runs the generated decision tree classifier on test data. It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate.
+
+A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/). We've inluded the output graph in UserAnalysis/2000.pdf.
 
 ```sh
 $ python BizAnalysis/decisiontree_on_biz.py BizAnalysis/yelp_funny_a_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json BizAnalysis/yelp_funny_b_bizs.json BizAnalysis/yelp_nonfunny_a_bizs.json
@@ -59,7 +61,9 @@ $ python BizAnalysis/decisiontree_on_biz.py BizAnalysis/yelp_funny_a_bizs.json B
 
 #### UserAnalysis/decisiontree_on_user.py
 
-This program trains a decision tree classifier with 2 sets of training data (1 funny and 1 nonfunny), and runs the generated decision tree classifier on test data. It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate. A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/).
+This program trains a decision tree classifier with 2 sets of training data (1 funny and 1 nonfunny), and runs the generated decision tree classifier on test data. It then prints the predicted labels for each review in test file, compares it with the given labels and computes the accuracy rate.
+
+A PDF of the decision tree graph will also be generated (requires graphviz http://www.graphviz.org/). We've included the output graph in BizAnalysis/2000.pdf.
 
 ```sh
 $ python UserAnalysis/decisiontree_on_user.py UserAnalysis/yelp_funny_a_users.json UserAnalysis/yelp_nonfunny_a_users.json UserAnalysis/yelp_funny_b_users.json UserAnalysis/yelp_nonfunny_a_users.json
